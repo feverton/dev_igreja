@@ -88,7 +88,7 @@
                     <a href="#">Membros</a>
                     <a href="#">EBD - Escola Bíblica Dominical</a>
                     <a href="#">Atendimentos</a>
-                    <a href="#">Cultos</a>
+                    <a href="#">Horários dos cultos</a>
                     <a href="#">Cursos</a>
                 </div>
             </div>
