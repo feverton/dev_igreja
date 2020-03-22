@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="#">Membros</a>
+                    <a href="#">Cadastro de Membros</a>
                     <a href="#">EBD - Escola Bíblica Dominical</a>
                     <a href="#">Atendimentos</a>
                     <a href="#">Horários dos cultos</a>
