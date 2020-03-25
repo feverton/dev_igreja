@@ -13,21 +13,14 @@ CREATE TABLE `correios` (
 	`uf` CHAR(2)
 ) ENGINE=INNODB;
 
-CREATE TABLE `tipos_enderecos` (
-	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`descricao` VARCHAR(32)
-) ENGINE=INNODB;
-
-INSERT INTO `tipos_enderecos` VALUES (1,'CASA'),(2,'LOTE'),(3,'APARTAMENTO');
-
 CREATE TABLE `enderecos` (
 	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`endereco_id` INT,
-	`tipoendereco_id` INT,
+	`tipo` ENUM(CASA,LOTE,APARTAMENTO),
 	`numero` VARCHAR(16),
 	FOREIGN KEY (`endereco_id`) REFERENCES `enderecos`(`id`)
 	ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY (`tipoendereco_id`) REFERENCES `tipos_enderecos`(`id`)
+	FOREIGN KEY (`logradouro_id`) REFERENCES `logradouros`(`id`)
 	ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=INNODB;
 
@@ -38,16 +31,22 @@ CREATE TABLE `tipos_telefones` (
 
 CREATE TABLE `telefones` () ENGINE=INNODB;
 
+CREATE TABLE `pessoas` (
+	nome VARCHAR(64),
+	endereco_id INT
+) ENGINE=INNODB;
+
+
+#Segunda parte da criação do banco
+
+CREATE TABLE `enderecos_pessoas` () ENGINE=INNODB;
+
 CREATE TABLE `igrejas` (
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	nome VARCHAR(64),
 	razao VARCHAR(128),
-	endereco_id INT,
 	data_criacao TIMESTAMP,
 
 ) ENGINE=INNODB;
-
-CREATE TABLE `pessoas` () ENGINE=INNODB;
 
 CREATE TABLE `membros` () ENGINE=INNODB;
 
@@ -55,13 +54,10 @@ CREATE TABLE `casais` () ENGINE=INNODB;
 
 CREATE TABLE `filhos` () ENGINE=INNODB;
 
-#Tipo de grupos nos quais o ministério será dividido (salas, grupos, turmas, escalas)#
-CREATE TABLE `divisoes` () ENGINE=INNODB;
-
 CREATE TABLE `ministerios` (
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(64),
-	divisao_id INT 
+	divisao ENUM(salas, grupos, turmas, escalas)
 ) ENGINE=INNODB;
 
 CREATE TABLE `tipos_lideres` () ENGINE=INNODB;
